@@ -1,4 +1,5 @@
 ﻿using BigBookWeb.Data;
+using BigBookWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BigBookWeb.Controllers
@@ -22,6 +23,16 @@ namespace BigBookWeb.Controllers
         public IActionResult Create()
         {
             return View();
+        }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Create(Category obj)
+        {
+            _db.Categories.Add(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
