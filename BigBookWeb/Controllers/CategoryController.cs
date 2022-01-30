@@ -15,7 +15,7 @@ namespace BigBookWeb.Controllers
         public IActionResult Index()
         {
             var categoryList = _db.Categories.ToList();
-            return View();
+            return View(categoryList);
         }
     }
 }
