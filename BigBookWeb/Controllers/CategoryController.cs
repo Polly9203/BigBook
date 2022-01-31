@@ -76,5 +76,35 @@ namespace BigBookWeb.Controllers
 
             return View(obj);
         }
+
+        //GET
+        public IActionResult Delete(int? id)
+        {
+            var category = _db.Categories.Find(id);
+
+            if (id == null || id == 0 || category == null)
+            {
+                return NotFound();
+            }
+
+            return View(category);
+        }
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeletePOST(int? id)
+        {
+            var category = _db.Categories.Find(id);
+
+            if (category == null)
+            {
+                return NotFound();
+
+            }
+            _db.Categories.Remove(category);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
+        }
     }
 }
