@@ -9,6 +9,7 @@
 		<div class="row rb-2">
 			<h2>Create Category</h2>
 		</div>
+		<div asp-validation-summary="All"></div>
 		<div class="mb-3">
 			<label asp-for="Name"></label>
 			<input asp-for="Name" class="form-control" />
@@ -25,3 +26,10 @@
 		</a>
 	</div>
 </form>
+
+@section Scripts
+{
+	@{
+		<partial name="_ValidationScriptsPartial" />
+	}
+}
