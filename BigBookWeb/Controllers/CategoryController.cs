@@ -30,6 +30,10 @@ namespace BigBookWeb.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Category obj)
         {
+            if (obj.Name == obj.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("name", "The Name cannot exactly match the DisplayOrder");
+            }
             if (ModelState.IsValid)
             {
                 _db.Categories.Add(obj);
